@@ -2,7 +2,7 @@ package com.mygdx.game;
 
 public class Ball {
 	protected int rad;
-	protected float x, y, xvel, yvel, maxvel; //maxvel is the total velocity that the ball can experience (Vector sum of velx and vely)
+	protected float x, y, xvel, yvel, maxvel; //maxvel is the total velocity that the this.can experience (Vector sum of velx and vely)
 	protected boolean moving, lost;
 	
 	public Ball(Player player) {
@@ -16,36 +16,34 @@ public class Ball {
 		this.x = player.getX() + (player.getWidth() / 2);
 	}
 	
-	public void move(Ball ball, Player player, Window window, Block[] blocks) {
-		if (ball.getMoving() == false) {
-			ball.setX(player.getX() + (player.getWidth() / 2));
+	public void move(Player player, GameWindow window, Block[] blocks) {
+		if (this.getMoving() == false) {
+			this.setX(player.getX() + (player.getWidth() / 2));
 		}
 		else {
-			if (((ball.getX() + ball.getRad() + ball.getXvel() >= window.getXmax()) && ball.getXvel() > 0) || ((ball.getX() - ball.getRad() + ball.getXvel() <= 0) && ball.getXvel() < 0)) {
-				ball.setXvel(-ball.getXvel());
+			if (((this.getX() + this.getRad() + this.getXvel() >= window.getXmax()) && this.getXvel() > 0) || ((this.getX() - this.getRad() + this.getXvel() <= 0) && this.getXvel() < 0)) {
+				this.setXvel(-this.getXvel());
 			}
-			if ((ball.getY() + ball.getRad() + ball.getYvel() >= window.getYmax()) && ball.getYvel() > 0) {
-				ball.setYvel(-ball.getYvel());
+			if ((this.getY() + this.getRad() + this.getYvel() >= window.getYmax()) && this.getYvel() > 0) {
+				this.setYvel(-this.getYvel());
 			}
-			else if (ball.getYvel() < 0 && (ball.getY() - ball.getRad() <= player.getY() + player.getHeight()) && (ball.getY() - ball.getRad() >= player.getY()) && ((ball.getX() + ball.getRad() >= player.getX()) && (ball.getX() - ball.getRad() <= player.getX() + player.getWidth()))) {
-				//ball.setYvel(-ball.getYvel()); //THIS IS JUST A PLACEHOLDER FOR THE TRIGONOMETRY YET TO COME TO WORK OUT THE DIRECTION OF THE BALL'S MOVEMENT
-				float xdistancemax = (player.getWidth() / 2) + ball.getRad(); //The furthest distance the ball could be from the center of the paddle and still bounce off
-				float xdistance = ball.getX() - (player.getX() + (player.getWidth() / 2));
-				ball.setXvel((xdistance * ball.getMaxvel()) / xdistancemax);
-				double yvel = Math.sqrt((ball.getMaxvel() * ball.getMaxvel()) - (ball.getXvel() * ball.getXvel()));
+			else if (this.getYvel() < 0 && (this.getY() - this.getRad() <= player.getY() + player.getHeight()) && (this.getY() - this.getRad() >= player.getY()) && ((this.getX() + this.getRad() >= player.getX()) && (this.getX() - this.getRad() <= player.getX() + player.getWidth()))) {
+				float xdistancemax = (player.getWidth() / 2) + this.getRad(); //The furthest distance the this.could be from the center of the paddle and still bounce off
+				float xdistance = this.getX() - (player.getX() + (player.getWidth() / 2));
+				this.setXvel((xdistance * this.getMaxvel()) / xdistancemax);
+				double yvel = Math.sqrt((this.getMaxvel() * this.getMaxvel()) - (this.getXvel() * this.getXvel()));
 				if (yvel < 1) {
 					yvel = 1;
 				}
-				ball.setYvel((float)yvel);
-				//System.out.println(ball.getYvel() + " " + ball.getXvel());
+				this.setYvel((float)yvel);
 				
 			}
 			
 			for (int i = 0; i < blocks.length; i++) {
 				
-				if (blocks[i].getBroken() == false) {
+				if (blocks[i].getBroken() == false && blocks[i].getThreshold() != -2) {
 					
-					if ((ball.getY() - ball.getRad() + ball.getYvel() <= blocks[i].getY() + blocks[i].getHeight()) && (ball.getY() + ball.getRad() + ball.getYvel() >= blocks[i].getY()) && (ball.getX() - ball.getRad() + ball.getXvel() <= blocks[i].getX() + blocks[i].getWidth()) && (ball.getX() + ball.getRad() + ball.getXvel() >= blocks[i].getX())) {
+					if ((this.getY() - this.getRad() + this.getYvel() <= blocks[i].getY() + blocks[i].getHeight()) && (this.getY() + this.getRad() + this.getYvel() >= blocks[i].getY()) && (this.getX() - this.getRad() + this.getXvel() <= blocks[i].getX() + blocks[i].getWidth()) && (this.getX() + this.getRad() + this.getXvel() >= blocks[i].getX())) {
 						if (blocks[i].getBreakable() == true) {
 							blocks[i].setThreshold(blocks[i].getThreshold() - 1);
 							if (blocks[i].getThreshold() <= 0) {
@@ -55,32 +53,29 @@ public class Ball {
 						}
 						
 						if(blocks[i].getThreshold() > -1 || blocks[i].getBreakable() == false) {
-							if ((ball.getY() - ball.getRad() > blocks[i].getY() + blocks[i].getHeight()) && (ball.getY() - ball.getRad() + ball.getYvel() <= blocks[i].getY() + blocks[i].getHeight())) {
-								ball.setYvel(-ball.getYvel());
+							if ((this.getY() - this.getRad() > blocks[i].getY() + blocks[i].getHeight()) && (this.getY() - this.getRad() + this.getYvel() <= blocks[i].getY() + blocks[i].getHeight())) {
+								this.setYvel(-this.getYvel());
 							}
-							else if ((ball.getY() + ball.getRad() < blocks[i].getY()) && (ball.getY() + ball.getRad() + ball.getYvel() >= blocks[i].getY())) {
-								ball.setYvel(-ball.getYvel());
+							else if ((this.getY() + this.getRad() < blocks[i].getY()) && (this.getY() + this.getRad() + this.getYvel() >= blocks[i].getY())) {
+								this.setYvel(-this.getYvel());
 							}
 							
-							if ((ball.getX() - ball.getRad() > blocks[i].getX() + blocks[i].getWidth()) && (ball.getX() - ball.getRad() + ball.getXvel() <= blocks[i].getX() + blocks[i].getWidth())) {
-								ball.setXvel(-ball.getXvel());
+							if ((this.getX() - this.getRad() > blocks[i].getX() + blocks[i].getWidth()) && (this.getX() - this.getRad() + this.getXvel() <= blocks[i].getX() + blocks[i].getWidth())) {
+								this.setXvel(-this.getXvel());
 							}
-							else if ((ball.getX() + ball.getRad() < blocks[i].getX()) && (ball.getX() + ball.getRad() + ball.getXvel() >= blocks[i].getX())) {
-								ball.setXvel(-ball.getXvel());
+							else if ((this.getX() + this.getRad() < blocks[i].getX()) && (this.getX() + this.getRad() + this.getXvel() >= blocks[i].getX())) {
+								this.setXvel(-this.getXvel());
 							}
 						}
-						
-					
-						//break;
 					}
 				}
 			}
 			
-			ball.setX(ball.getX() + ball.getXvel());
-			ball.setY(ball.getY() + ball.getYvel());
+			this.setX(this.getX() + this.getXvel());
+			this.setY(this.getY() + this.getYvel());
 			
-			if (ball.getY() - ball.getRad() <= 0) {
-				ball.setLost(true);
+			if (this.getY() - this.getRad() <= 0) {
+				this.setLost(true);
 			}
 			
 			

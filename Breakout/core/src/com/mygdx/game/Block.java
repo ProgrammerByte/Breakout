@@ -1,17 +1,17 @@
 package com.mygdx.game;
 
 public class Block {
-	protected float x, y, width, height;
+	protected double x, y, width, height;
 	protected int threshold, xcoord, ycoord; //xcoord and ycoord are copies of the ones from window
 	protected boolean breakable, broken;
 	
-	public Block(int xcoord, int ycoord, int threshold, boolean breakable, Window window) {
+	public Block(int xcoord, int ycoord, int threshold, boolean breakable, GameWindow window) {
 		this.xcoord = xcoord;
 		this.ycoord = ycoord;
-		this.x = xcoord * (window.getXmax() / window.getColumns()[window.getLevel()]); //8 is the total width of the game board which may later be changed so that the width can be any natural number
-		this.y = window.getYmax() - (ycoord * (window.getYmax() / window.getRows()[window.getLevel()]) / 2);
-		this.width = window.getXmax() / window.getColumns()[window.getLevel()];
-		this.height = (window.getYmax() / window.getRows()[window.getLevel()]) / 2;
+		this.x = xcoord * (window.getXmax() / window.getCurrentColumns());
+		this.y = window.getYmax() - (ycoord * (window.getYmax() / window.getCurrentRows()) / 2);
+		this.width = (window.getXmax() / window.getCurrentColumns());
+		this.height = (window.getYmax() / window.getCurrentRows()) / 2;
 		this.threshold = threshold; //How many hits it takes until the block breaks
 		this.breakable = breakable;
 		this.broken = false;
@@ -29,19 +29,19 @@ public class Block {
 		return ycoord;
 	}
 	
-	public float getX() {
+	public double getX() {
 		return x;
 	}
 	
-	public float getY() {
+	public double getY() {
 		return y;
 	}
 	
-	public float getWidth() {
+	public double getWidth() {
 		return width;
 	}
 	
-	public float getHeight() {
+	public double getHeight() {
 		return height;
 	}
 	
@@ -51,6 +51,10 @@ public class Block {
 	
 	public int getThreshold() {
 		return threshold;
+	}
+	
+	public void setBreakable(boolean value) {
+		breakable = value;
 	}
 	
 	public boolean getBreakable() {
