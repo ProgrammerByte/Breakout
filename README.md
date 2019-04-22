@@ -4,6 +4,8 @@
 
 Update 18/04/19: Added multiple menus as well as a level editor so you can make and play your own levels using all the blocks available in the game already. All contents are stored in a text file via run length encoding.
 
+Update 22/04/19: Improved collision between ball and blocks (version 2.1).
+
 Controls (not including level editor):                                                                                          
 Left Click - Throw ball / proceed to next level                                                               
 Move mouse - Move paddle                                                     
