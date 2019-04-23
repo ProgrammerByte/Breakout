@@ -1,19 +1,28 @@
 package com.mygdx.game;
 
 public class Player {
-	protected int x, y, width, height, lives;
+	protected int width, height, lives;
+	protected float x, y, xvel;
 	
 	public Player(GameWindow window) {
 		this.width = 100;
 		this.height = 15;
 		this.x = (window.getXmax() / 2) - (this.width / 2);
 		this.y = 25;
+		this.xvel = 0;
 		this.lives = 3;
 	}
 	
 	
 	
 	
+	public void setXvel(float value) {
+		xvel = value;
+	}
+	
+	public float getXvel() {
+		return xvel;
+	}
 	
 	public void setLives(int value) {
 		lives = value;
@@ -23,15 +32,15 @@ public class Player {
 		return lives;
 	}
 	
-	public void setX(int value) {
+	public void setX(float value) {
 		x = value;
 	}
 	
-	public int getX() {
+	public float getX() {
 		return x;
 	}
 	
-	public int getY() {
+	public float getY() {
 		return y;
 	}
 	

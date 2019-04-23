@@ -259,7 +259,7 @@ public class Breakout extends ApplicationAdapter {
 	
 	public void Menu() {
 		if (firsttime == true) {
-			items = new String[]{"Play", "Create", "Controls", "Quit"};
+			items = new String[]{"Genetic", "Play", "Create", "Controls", "Quit"};
 			menu = new Menu("Linear", items);
 			firsttime = false;
 			level = -1; //A flag to indicate that there is no specified level
@@ -470,6 +470,10 @@ public class Breakout extends ApplicationAdapter {
 				+        " Back / Menu         = B / BACKSPACE", 0, menu.getYmax() - 10);
 		batch.end();
 	}
+	
+	public void Genetic() {
+		
+	}
 
 	@Override
 	public void render () {
@@ -478,6 +482,10 @@ public class Breakout extends ApplicationAdapter {
 		
 		if (state == "Play") {
 			Play();
+		}
+		
+		else if (state == "Genetic") {
+			Genetic();
 		}
 		
 		else if (state == "Menu") {
