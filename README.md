@@ -6,6 +6,8 @@ Update 18/04/19: Added multiple menus as well as a level editor so you can make 
 
 Update 22/04/19: Improved collision between ball and blocks (version 2.1).
 
+Update 01/06/20: Added a runnable jar file in the "final" file.
+
 Controls (not including level editor):                                                                                          
 Left Click - Throw ball / proceed to next level                                                               
 Move mouse - Move paddle                                                     
