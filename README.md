@@ -8,6 +8,8 @@ Update 22/04/19: Improved collision between ball and blocks (version 2.1).
 
 Update 01/06/20: Added a runnable jar file in the "final" file.
 
+Update 02/06/20: Minor bug fixes (related to non integer division and an empty list of levels). Due to how this project is so old, I have come to realise how inexperienced I was with OOP at the time, therefore the code is sometimes painful to trek through. As a result of this I believe this may be the last update to this project other than minor bug fixes.
+
 Controls (not including level editor):                                                                                          
 Left Click - Throw ball / proceed to next level                                                               
 Move mouse - Move paddle                                                     
