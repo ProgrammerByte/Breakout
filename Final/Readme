@@ -1,0 +1,3 @@
+This (should be) the final version of my Breakout project which I worked on during May 2019 (with some minor bug fixes in June 2020) using LibGDX. My program layout wasn't the best back then therefore making adjustments is rather difficult.  
+  
+This folder contains four files - only two of which are required for the game to work (Breakout.jar and Levels). The Breakout folder contains the source code of the game, therefore can be deleted if unwanted.
